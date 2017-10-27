@@ -12,11 +12,16 @@ public class UIWindow extends JFrame {
     public UIWindow() {
         displayPanel = new JPanel();
         
-        this.setVisible(true);
-        username = JOptionPane.showInputDialog(this, "Please enter your username.", null);
+        this.setVisible(true);       
     }
     
     public String getUsername(){
+        username = JOptionPane.showInputDialog(this, "Please enter your username.", null);
+        return username;
+    }
+    
+    public String retryUsername(){
+        username = JOptionPane.showInputDialog(this, "Username unavailable, please try again.", null);
         return username;
     }
 }

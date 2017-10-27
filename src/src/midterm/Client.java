@@ -29,11 +29,8 @@ public class Client {
     }
     
     public void setUsername(){
-        System.out.println("getting username");
         user = ui.getUsername();
-        System.out.println("setting username object");
         myUsername = MessageFactory.getLoginMessage(user);
-        System.out.println("sending usernemt to server");
         messenger.outputUser(myUsername);
     }
     
