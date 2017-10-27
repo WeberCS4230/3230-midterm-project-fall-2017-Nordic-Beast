@@ -1,1 +1,0 @@
-This file is in resources, where any image files or text files should end up. Delete this file before your final commit.
