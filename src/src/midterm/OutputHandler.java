@@ -20,6 +20,9 @@ public class OutputHandler {
         }
     }
     
+    /*
+    Sends the chosen Username to the server.
+    */
     public void outputUser(LoginMessage inString){
         try{
         objectOutput.writeObject(inString);
@@ -29,6 +32,9 @@ public class OutputHandler {
         }
     }
     
+    /*
+    Sends a chat message to the server.
+    */
     public void outputChat(ChatMessage inMessage){
         try{
             objectOutput.writeObject(inMessage);

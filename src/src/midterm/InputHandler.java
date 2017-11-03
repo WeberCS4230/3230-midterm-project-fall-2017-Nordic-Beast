@@ -44,10 +44,13 @@ public class InputHandler implements Runnable {
                         try {
                             obj = objInStream.readObject();
                         } catch (ClassNotFoundException cnf) {
-                            //Shouldn't reach here, only reads stream with there's something.
+                            //Shouldn't reach here, only reads stream when there's something.
                         }
                         message = (Message) obj;
-                        System.out.println(message.getType());
+                        
+                        /*
+                        Checks for message type, then utilizes the proper method.
+                        */
                         if (message.getType() == MessageType.DENY){
                             client.setUser((StatusMessage) message);
                         }

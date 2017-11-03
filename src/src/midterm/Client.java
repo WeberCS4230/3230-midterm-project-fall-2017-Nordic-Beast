@@ -17,6 +17,13 @@ public class Client {
     private LoginMessage myUsername;
     private ChatMessage chatOut;
     
+    
+   /*  
+    Creates a socket to connect to the server.
+    Runs a new InputHandler thread to accept objects from the server.
+    Creates an UI object for the user
+    Creates an OutputHandler to send objects to the server.
+    */
     public Client(){
         try{
         socket = new Socket("ec2-54-172-123-164.compute-1.amazonaws.com", 8989);
@@ -32,23 +39,35 @@ public class Client {
         }
     }
     
+    /*
+    Sends a username to the server.
+    */
     public void setUsername(){
         user = ui.getUsername();
         myUsername = MessageFactory.getLoginMessage(user);
         messenger.outputUser(myUsername);
     }
     
+    /*
+    If the username is denied, asks user for a different username.
+    */
     public void setUser(StatusMessage deny){
         user = ui.retryUsername();
         myUsername = MessageFactory.getLoginMessage(user);
         messenger.outputUser(myUsername);
     }
     
+    /*
+    sends a ChatMessage object to the server
+    */
     void sendChat(String chat){
         chatOut = MessageFactory.getChatMessage(chat, user);
         messenger.outputChat(chatOut);
     }
     
+    /*
+    When a ChatMessage is received, appends the object to the chat window.
+    */
     void updateChat(ChatMessage message) {
         ui.appendChat(message);
     }

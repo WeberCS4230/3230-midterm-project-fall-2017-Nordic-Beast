@@ -58,7 +58,7 @@ public class UIWindow extends JFrame {
         textDisplay.setWrapStyleWord(true);
         
         /*
-        * Set max and min sized because otherwise it looked wonky
+         Set max and min sized because otherwise it looked wonky
          */
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.PAGE_AXIS));
         displayPanel.setMaximumSize(new Dimension(500, 300));
@@ -92,11 +92,17 @@ public class UIWindow extends JFrame {
         this.setVisible(true);       
     }
     
+    /*
+    Asks user for a Username for the game.
+    */
     public String getUsername(){
         username = JOptionPane.showInputDialog(this, "Please enter your username.", null);
         return username;
     }
     
+    /*
+    If the username is taken, asks the user to retry with a different name.
+    */
     public String retryUsername(){
         pastUser = username;
         username = JOptionPane.showInputDialog(this, "Username unavailable, please try again.", null);
@@ -106,6 +112,9 @@ public class UIWindow extends JFrame {
         return username;
     }
     
+    /*
+    Appends the String and Username from the received ChatMessage into the chat window.
+    */
     public void appendChat(ChatMessage inMessage){
         textDisplay.append("\n" + inMessage.getUsername() + ": " + inMessage.getText());
     }
