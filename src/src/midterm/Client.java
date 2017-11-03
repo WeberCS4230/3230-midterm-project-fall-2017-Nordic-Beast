@@ -50,7 +50,7 @@ public class Client {
     }
     
     void updateChat(ChatMessage message) {
-        ui.appendChat(message.getText());
+        ui.appendChat(message);
     }
     
     public static void main(String[] args) {

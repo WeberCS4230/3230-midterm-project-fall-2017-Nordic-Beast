@@ -1,5 +1,6 @@
 package midterm;
 
+import blackjack.message.ChatMessage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -105,7 +106,7 @@ public class UIWindow extends JFrame {
         return username;
     }
     
-    public void appendChat(String inString){
-        textDisplay.append("\n" + inString);
+    public void appendChat(ChatMessage inMessage){
+        textDisplay.append("\n" + inMessage.getUsername() + ": " + inMessage.getText());
     }
 }
