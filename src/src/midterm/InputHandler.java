@@ -44,7 +44,7 @@ public class InputHandler implements Runnable {
                         try {
                             obj = objInStream.readObject();
                         } catch (ClassNotFoundException cnf) {
-                            //Shouldn't reach here, only reads stream when there's something.
+                            //Shouldn't reach here, only reads from stream when there is something in it.
                         }
                         message = (Message) obj;
                         

@@ -118,4 +118,11 @@ public class UIWindow extends JFrame {
     public void appendChat(ChatMessage inMessage){
         textDisplay.append("\n" + inMessage.getUsername() + ": " + inMessage.getText());
     }
+    
+    /*
+    appends the chat area with a message only seen locally.
+    */
+    public void localAppend(String inString){
+        textDisplay.append("\n" + inString);
+    }
 }
