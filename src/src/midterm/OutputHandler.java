@@ -1,6 +1,6 @@
 package midterm;
 
-import blackjack.message.LoginMessage;
+import blackjack.message.*;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -24,6 +24,15 @@ public class OutputHandler {
         try{
         objectOutput.writeObject(inString);
         objectOutput.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void outputChat(ChatMessage inMessage){
+        try{
+            objectOutput.writeObject(inMessage);
+            objectOutput.flush();
         } catch (IOException e){
             e.printStackTrace();
         }

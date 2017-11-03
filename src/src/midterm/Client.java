@@ -1,7 +1,10 @@
 package midterm;
 
+import blackjack.message.ChatMessage;
 import blackjack.message.LoginMessage;
+import blackjack.message.Message;
 import blackjack.message.MessageFactory;
+import blackjack.message.StatusMessage;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -12,10 +15,11 @@ public class Client {
     private String user;
     private OutputHandler messenger;
     private LoginMessage myUsername;
+    private ChatMessage chatOut;
     
     public Client(){
         try{
-        socket = new Socket("ec2-54-91-0-253.compute-1.amazonaws.com", 8989);
+        socket = new Socket("ec2-54-172-123-164.compute-1.amazonaws.com", 8989);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -23,7 +27,7 @@ public class Client {
         if (socket.isConnected()){
             System.out.println("connected");
             new Thread(new InputHandler(socket, this)).start();
-            ui = new UIWindow();
+            ui = new UIWindow(this);
             messenger = new OutputHandler(socket);
         }
     }
@@ -34,8 +38,25 @@ public class Client {
         messenger.outputUser(myUsername);
     }
     
+    public void setUser(StatusMessage deny){
+        user = ui.retryUsername();
+        myUsername = MessageFactory.getLoginMessage(user);
+        messenger.outputUser(myUsername);
+    }
+    
+    void sendChat(String chat){
+        chatOut = MessageFactory.getChatMessage(chat, user);
+        messenger.outputChat(chatOut);
+    }
+    
+    void updateChat(ChatMessage message) {
+        ui.appendChat(message.getText());
+    }
+    
     public static void main(String[] args) {
         Client client = new Client();
         client.setUsername();
     }
+
+    
 }
